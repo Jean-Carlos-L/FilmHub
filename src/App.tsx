@@ -8,7 +8,7 @@ function App() {
       <div className="card bg-gray">
 
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          Edit <code>src/App.tsx</code>
         </p>
       </div>
       <p className="read-the-docs">
