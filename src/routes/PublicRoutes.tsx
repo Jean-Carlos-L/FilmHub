@@ -1,6 +1,11 @@
+import { Route, Routes } from "react-router-dom";
+
 function PublicRoutes() {
    return (
-      <h1>Public Routes</h1>
+      <Routes>
+         <Route path="/login" element={<h1>Login Route</h1>} />
+      </Routes>
+
    )
 }
 
