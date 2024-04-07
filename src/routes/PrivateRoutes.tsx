@@ -1,6 +1,6 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import RequireAuth from "./RequireAuth";
-import Dashboard from "@hooks/pages/Dashboard";
+import Dashboard from "src/pages/Dashboard";
 
 function PrivateRoutes() {
    return (
@@ -10,6 +10,10 @@ function PrivateRoutes() {
                <Dashboard />
             </RequireAuth>
          } />
+
+         {/* Agregar las rutas necesarias para la aplicación aqui abajo */}
+
+         <Route path="*" element={<Navigate to='/login' />} />
       </Routes>
    )
 }
