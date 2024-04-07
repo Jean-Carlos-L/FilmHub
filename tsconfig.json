@@ -23,12 +23,13 @@
     /* Paths */
     "baseUrl": ".",
     "paths": {
-      "@hooks/*": ["src/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@components/*": ["src/components/*"],
       "@utilities/*": ["src/utilities/*"],
       "@models/*": ["src/models/*"],
       "@services/*": ["src/services/*"],
       "@assets/*": ["src/assets/*"],
+      "@redux/*": ["src/redux/*"],
     }
   },
   "include": ["src"],
