@@ -1,12 +1,13 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import RequireAuth from "./RequireAuth";
 import Dashboard from "src/pages/Dashboard";
 import SingleItem from "src/pages/SingleItem/SingleItem";
+import { ROUTES } from "./routes";
 
 function PrivateRoutes() {
    return (
       <Routes>
-         <Route path="/dashboard" element={
+         <Route path={ROUTES.DASHBOARD} element={
             <RequireAuth>
                <Dashboard />
             </RequireAuth>
@@ -14,11 +15,11 @@ function PrivateRoutes() {
 
          {/* Agregar las rutas necesarias para la aplicación aqui abajo */}
 
-         <Route path="/single-item/:id" element={<RequireAuth>
-            <SingleItem />
-         </RequireAuth>} />
-
-         <Route path="*" element={<Navigate to='/login' />} />
+         <Route path={ROUTES.SINGLE_ITEM} element={
+            <RequireAuth>
+               <SingleItem />
+            </RequireAuth>}
+         />
       </Routes>
    )
 }
