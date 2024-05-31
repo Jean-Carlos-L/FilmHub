@@ -17,7 +17,7 @@ function SectionTop({ id, title, synopsis, image }: PropsSectionTop) {
                         {title}
                      </h1>
                      <button className="relative">
-                        <HeartIcon className="w-14 h-14 text-primary-dark transform  hover:scale-125 transition-opacity duration-300 hover:shadow-sm " />
+                        <HeartIcon className="w-14 h-14 text-primary-dark transform hover:scale-125 transition-opacity duration-300 hover:shadow-sm " />
                      </button>
                   </div>
                   <PrimaryButton>
