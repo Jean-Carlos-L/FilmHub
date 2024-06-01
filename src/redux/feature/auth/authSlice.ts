@@ -1,10 +1,10 @@
-import { UserAuth } from '@models/userAuth.model';
+import { UserAuth } from 'src/common/models/userAuth.model';
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: UserAuth| null;
+  user: UserAuth | null;
   loading: boolean;
   error: string | null;
 }

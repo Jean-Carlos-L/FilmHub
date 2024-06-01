@@ -1,4 +1,4 @@
-import PrimaryButton from "@components/PrimaryButton";
+import PrimaryButton from "src/common/components/PrimaryButton";
 import { HeartIcon } from "@heroicons/react/16/solid";
 
 function SectionTop({ id, title, synopsis, image }: PropsSectionTop) {

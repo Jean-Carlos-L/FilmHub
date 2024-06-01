@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import SectionTop from "./components/SectionTop";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Multimedia } from "@models/Multimedia.model";
+import { Multimedia } from "src/common/models/Multimedia.model";
 import { RootState } from "@redux/store";
 import SectionDetails from "./components/SectiionDetails";
 import Forum from "./components/Forum";
@@ -35,7 +35,7 @@ function SingleItem() {
         id={currentItem.id}
         title={currentItem.title}
         synopsis={currentItem.sypnosis}
-        image="https://via.placeholder.com/200x300"
+        image={"https://via.placeholder.com/200x300"}
       />
 
       <SectionDetails

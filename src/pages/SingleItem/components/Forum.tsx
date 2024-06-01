@@ -1,51 +1,29 @@
-import PrimaryButton from "@components/PrimaryButton";
+import PrimaryButton from "src/common/components/PrimaryButton";
 import { useRef } from "react";
+import { useCommentsQuery } from "../hooks/useCommentsQuery";
+import { useCommentsCommand } from "../hooks/useCommentsCommand";
 
 function Forum({ id }: PropsForum) {
-   const textareaRef = useRef(null);
-   console.log("id", id);
+   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+   const { comments } = useCommentsQuery({ multimediaId: id });
+   const { setNewComment } = useCommentsCommand();
 
    const adjustTextareaHeight = () => {
       const textarea = textareaRef.current;
-      textarea.style.height = 'auto'; // Reset the height
-      textarea.style.height = `${textarea.scrollHeight}px`; // Set it to the scroll height
+      if (textarea) {
+         textarea.style.height = 'auto';
+         textarea.style.height = `${textarea.scrollHeight}px`;
+      }
    };
 
-   const comments = [
-      {
-         id: 1,
-         user: {
-            id: 1,
-            name: "Juan Perez",
-            image: "https://via.placeholder.com/50x50",
-         },
-         comment:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.",
-         date: "2021-08-01",
-      },
-      {
-         id: 2,
-         user: {
-            id: 1,
-            name: "Juan Perez",
-            image: "https://via.placeholder.com/50x50",
-         },
-         comment:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.",
-         date: "2021-08-01",
-      },
-      {
-         id: 3,
-         user: {
-            id: 1,
-            name: "Juan Perez",
-            image: "https://via.placeholder.com/50x50",
-         },
-         comment:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusda.m.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam",
-         date: "2021-08-01",
-      },
-   ];
+   const handleOnsubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const comment = formData.get('comment') as string;
+      setNewComment(prevState => ({ ...prevState, comment }));
+      event.currentTarget.reset();
+   };
+
 
    return (
       <section className="w-3/4 mt-10 text-gray-50">
@@ -64,14 +42,17 @@ function Forum({ id }: PropsForum) {
          ))}
 
          <div className="flex items-center space-x-2">
-            <textarea
-               ref={textareaRef}
-               placeholder="Escribe tu comentario"
-               className="flex-1 p-2 bg-blue-900 text-white rounded-l-md focus:outline-none resize-none"
-               rows={1}
-               onInput={adjustTextareaHeight}
-            />
-            <PrimaryButton className="">Comentar</PrimaryButton>
+            <form onSubmit={handleOnsubmit}>
+               <textarea
+                  ref={textareaRef}
+                  name="comment"
+                  placeholder="Escribe tu comentario"
+                  className="flex-1 p-2 bg-blue-900 text-white rounded-l-md focus:outline-none resize-none"
+                  rows={1}
+                  onInput={adjustTextareaHeight}
+               />
+               <PrimaryButton type="submit">Comentar</PrimaryButton>
+            </form>
          </div>
       </section>
    );
