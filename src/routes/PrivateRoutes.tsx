@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
-import RequireAuth from "./RequireAuth";
-import Dashboard from "src/pages/Dashboard";
-import SingleItem from "src/pages/SingleItem/SingleItem";
 import { ROUTES } from "./routes";
+import RequireAuth from "./RequireAuth";
+import SingleItem from "src/pages/SingleItem/SingleItem";
+import LandingPage from "src/pages/LandingPage/LandingPage";
 
 function PrivateRoutes() {
    return (
       <Routes>
-         <Route path={ROUTES.DASHBOARD} element={
+         <Route path={ROUTES.LANDING_PAGE} element={
             <RequireAuth>
-               <Dashboard />
+               <LandingPage />
             </RequireAuth>
          } />
 

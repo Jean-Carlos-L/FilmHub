@@ -1,6 +1,6 @@
 import { Comment } from "src/common/models/Comment.model";
 import { useEffect, useState } from "react";
-import { getCommentsByMultimediaService } from "../services/getCommentsByMultimedia";
+import { getCommentsByMultimediaService } from "../services/getCommentsByMultimedia.service";
 import { useFetch } from "src/common/hooks/useFetch";
 
 export const useCommentsQuery = ({ multimediaId }: { multimediaId: number }) => {
