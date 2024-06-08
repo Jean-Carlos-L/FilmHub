@@ -2,14 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   font-family: Arial, sans-serif;
+}
+
+#root {
+  height: 100%;
 }
 
 .container {
   display: flex;
   height: 100vh;
+  width: 100%;
 }
 
 .login-section {
@@ -36,13 +44,17 @@ h1 {
   color: #533b72;
 }
 
-.toggle-button {
+button {
   background-color: #533b72;
   color: white;
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #3a2a52;
 }
 
 .register-section {
@@ -81,18 +93,6 @@ form .birthdate input {
   width: 30%;
 }
 
-form button {
-  background-color: #533b72;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #3a2a52;
-}
-
 p {
   color: #533b72;
 }
@@ -105,6 +105,3 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
-
-
