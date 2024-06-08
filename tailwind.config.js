@@ -14,6 +14,11 @@ export default {
           light: "#888883",
           dark: "#000000",
         },
+        terciary: {
+          default: "#040350",
+          light: "#FFFFFF",
+          dark: "#E0E0E0",
+        },
       },
       fontFamily: {
         body: ["lato"],
