@@ -1,10 +1,11 @@
 import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "@redux/store";
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
-   //   const { user } = useAuth();
-   const user = false;
+   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
-   if (!user) {
+   if (isAuthenticated) {
       return <Navigate to="/login" />;
    }
 
