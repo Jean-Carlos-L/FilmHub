@@ -11,7 +11,8 @@ const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container p-5 items-center flex flex-col">
+        <div>
       <div className="login-section">
         <div className="logo-container">
           <h1>FILMHUB</h1>
@@ -29,6 +30,7 @@ const AuthPage: React.FC = () => {
           {!isLogin && ' y '}
           {!isLogin && 'Política de Privacidad'}
         </p>
+      </div>
       </div>
     </div>
   );
