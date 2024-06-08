@@ -4,7 +4,106 @@
 
 body {
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.login-section {
+  flex: 1;
+  background-color: #d99fa6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  background-color: #533b72;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #533b72;
+}
+
+.toggle-button {
+  background-color: #533b72;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.register-section {
+  flex: 1;
+  background-color: #e4d7ee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.register-section h2 {
+  color: #533b72;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form .birthdate {
+  display: flex;
+  justify-content: space-between;
+}
+
+form .birthdate input {
+  width: 30%;
+}
+
+form button {
+  background-color: #533b72;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #3a2a52;
+}
+
+p {
+  color: #533b72;
+}
+
+a {
+  color: #533b72;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 
