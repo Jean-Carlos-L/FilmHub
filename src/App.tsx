@@ -60,9 +60,9 @@ function App() {
           {isLogin
             ? 'Al hacer clic en continuar, aceptas nuestros '
             : '¿No tienes una cuenta? '}
-          <a href="#">{isLogin ? 'Términos de Servicio' : 'Crear una Cuenta'}</a>
+          {isLogin ? 'Términos de Servicio' : 'Crear una Cuenta'}
           {isLogin && ' y '}
-          {isLogin && <a href="#">Política de Privacidad</a>}
+          {isLogin && 'Política de Privacidad'}
         </p>
       </div>
     </div>
