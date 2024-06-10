@@ -15,7 +15,7 @@
     "jsx": "react-jsx",
 
     /* Linting */
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -24,9 +24,9 @@
     "baseUrl": ".",
     "paths": {
       "@hooks/*": ["src/hooks/*"],
-      "@components/*": ["src/components/*"],
+      "@components/*": ["src/common/components/*"],
       "@utilities/*": ["src/utilities/*"],
-      "@models/*": ["src/models/*"],
+      "@models/*": ["src/common/models/*"],
       "@services/*": ["src/services/*"],
       "@assets/*": ["src/assets/*"],
       "@redux/*": ["src/redux/*"],

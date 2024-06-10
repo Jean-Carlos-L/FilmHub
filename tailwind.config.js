@@ -6,13 +6,18 @@ export default {
       colors: {
         primary: {
           default: "#FFC0CB",
-          light: "#FFA8A8",
+          light: "#FFD7E6",
           dark: "#FF6363",
         },
         secondary: {
-          default: "#2e1964",
-          light: "#888883",
+          default: "#3c3b65",
+          light: "#64548e",
           dark: "#000000",
+        },
+        terciary: {
+          default: "#040350",
+          light: "#273475",
+          dark: "#E0E0E0",
         },
       },
       fontFamily: {
