@@ -1,8 +1,10 @@
+import { authUser } from "@utilities/authUser.utils";
 import { FetchCustom } from "src/common/hooks/useFetch";
 
-export const likeToMultimediaService = (fetch: FetchCustom) => async (id: number) => {
+export const likeToMultimediaService = (fetch: FetchCustom) => async (idMultimedia: number) => {
    try {
-      const url = `${import.meta.env.BASE_URL}/multimedia/most-viewed/${id}`;
+      const idUser = authUser().id;
+      const url = `${import.meta.env.BASE_URL}/cinema/usuarioMultimedia/darMeGusta?idUsuario=${idUser}&idMultimedia=${idMultimedia}`;
       const response = await fetch(url, {
          method: 'PUT',
          headers: {
