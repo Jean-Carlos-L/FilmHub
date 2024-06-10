@@ -1,15 +1,16 @@
-import { useParams } from "react-router-dom";
-import SectionTop from "./components/SectionTop";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Multimedia } from "src/common/models/Multimedia.model";
 import { RootState } from "@redux/store";
-import SectionDetails from "./components/SectiionDetails";
+import { useParams } from "react-router-dom";
+
+import { Multimedia } from "src/common/models/Multimedia.model";
+import SectionTop from "./components/SectionTop";
+import SectionDetails from "./components/SectionDetails";
 import Forum from "./components/Forum";
 
 function SingleItem() {
   const { id } = useParams();
-  const items = useSelector((state: RootState) => state.items); // Add type annotation for 'state'
+  const items = useSelector((state: RootState) => state.items);
 
   const [currentItem] = useState<Multimedia>(() => {
     const item = items.find((item: Multimedia) => item.id === Number(id));
@@ -23,6 +24,8 @@ function SingleItem() {
         rating: 0,
         cast: [],
         state: 0,
+        genre: "",
+        image: "",
       };
     }
 
@@ -30,12 +33,12 @@ function SingleItem() {
   });
 
   return (
-    <main className="container p-5 items-center flex flex-col">
+    <main className="w-full p-5 items-center flex flex-col lg:w-3/4 lg:mx-auto">
       <SectionTop
         id={currentItem.id}
         title={currentItem.title}
         synopsis={currentItem.sypnosis}
-        image={"https://via.placeholder.com/200x300"}
+        image={currentItem.image ?? "https://via.placeholder.com/200x300"}
       />
 
       <SectionDetails
@@ -44,7 +47,7 @@ function SingleItem() {
         rating={currentItem.rating}
         cast={currentItem.cast}
         duration={120}
-        genre="Action"
+        genre={currentItem.genre}
         generalRating={4.5}
       />
 

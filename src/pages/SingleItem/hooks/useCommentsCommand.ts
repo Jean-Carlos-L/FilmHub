@@ -2,19 +2,21 @@ import { useEffect, useState } from "react";
 import { CommentDTO } from "@models/Comment.model";
 import { createCommentService } from "../services/createComment.service";
 import { useFetch } from "src/common/hooks/useFetch";
+import { now } from "@utilities/date.utils";
 
 export const useCommentsCommand = () => {
    const fetchCustom = useFetch();
    const [newComment, setNewComment] = useState<CommentDTO>({
       comment: "",
-      date: new Date().toISOString(),
+      date: now(),
    });
    const [result, setResult] = useState<string>("");
 
    const addComment = async () => {
       try {
-         await createCommentService(fetchCustom)(newComment);
-         setResult("Comment added successfully");
+         const message = await createCommentService(fetchCustom)(newComment);
+         setResult(message);
+         alert(message);
          setNewComment({ comment: "", date: new Date().toISOString() });
       } catch (error) {
          console.error(error)
@@ -23,6 +25,7 @@ export const useCommentsCommand = () => {
 
    useEffect(() => {
       if (newComment.comment !== "") {
+         console.log('guardando comment')
          addComment();
       }
    }, [newComment]);
