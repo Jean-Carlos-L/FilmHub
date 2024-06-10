@@ -4,9 +4,10 @@ import { FetchCustom } from "src/common/hooks/useFetch";
 
 export const getListsUserService = (fetch: FetchCustom) => async () => {
    try {
-      const url = `${import.meta.env.BASE_URL}/list/user`;
-      const response = await fetch<List[]>(url);
-      const lists = response.data.map(listAdapter);
+      // const url = `${import.meta.env.BASE_URL}/list/user`;
+      // const response = await fetch<List[]>(url);
+      // const lists = response.data.map(listAdapter);
+      const lists = JSON.parse(localStorage.getItem('lists'));
       return lists;
    } catch (error) {
       console.error(error);

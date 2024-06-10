@@ -25,7 +25,8 @@ const initialState: Multimedia[] = [
       rating: 4,
       cast: ["Tobey Maguire", "Kirsten Dunst", "James Franco"],
       state: 1,
-      image: "spiderman2.jpg",
+      image:
+         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx35ijRPVLiv88thqs1VlBlCvD-kvhN6sTlg&s",
       genre: "Action",
    },
    {
@@ -38,7 +39,7 @@ const initialState: Multimedia[] = [
       rating: 5,
       cast: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
       state: 1,
-      image: "thedarkknight.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhi1arS70w_kXQTF-GctH3Vz_vXSLK3ZxHVQ&s",
       genre: "Action",
    },
    {
@@ -51,7 +52,7 @@ const initialState: Multimedia[] = [
       rating: 5,
       cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
       state: 1,
-      image: "inception.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSst4d8lj72xNuuGSbj7e_UVZi2lQ86RC2FqQ&s",
       genre: "Action",
    },
    {
@@ -64,7 +65,7 @@ const initialState: Multimedia[] = [
       rating: 5,
       cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
       state: 1,
-      image: "interstellar.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTe2oCSoLdH12NupRRJ5kEaVhrZj_soh4o-Q&s",
       genre: "Action",
    },
    {
@@ -77,7 +78,7 @@ const initialState: Multimedia[] = [
       rating: 5,
       cast: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
       state: 1,
-      image: "thematrix.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlT7HFxKy00F-dF_gD82cIGrlle2xzxiTOEg&s",
       genre: "Action",
    },
    {
@@ -90,7 +91,7 @@ const initialState: Multimedia[] = [
       rating: 5,
       cast: ["Elijah Wood", "Ian McKellen", "Orlando Bloom"],
       state: 1,
-      image: "fellowshipofthering.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwjvtARVQAFZvjgby4i1ev7I2h0OgHcG8YoQ&s",
       genre: "Action",
    },
    {
@@ -103,7 +104,7 @@ const initialState: Multimedia[] = [
       rating: 5,
       cast: ["Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"],
       state: 1,
-      image: "gladiator.jpg",
+      image: "https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
       genre: "Action",
    },
    {
@@ -116,7 +117,7 @@ const initialState: Multimedia[] = [
       rating: 4,
       cast: ["Brad Pitt", "Edward Norton", "Helena Bonham Carter"],
       state: 1,
-      image: "fightclub.jpg",
+      image: "https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg",
       genre: "Action",
    },
    {
@@ -129,20 +130,19 @@ const initialState: Multimedia[] = [
       rating: 5,
       cast: ["Tom Hanks", "Robin Wright", "Gary Sinise"],
       state: 1,
-      image: "forrestgump.jpg",
-      genre: "Action",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJTL5_7lBqp2jrhPthEn-FU8Wu9bl67kIAwg&s",
+      genre: "Action, Drama",
    },
    {
       id: 10,
-      title: "The Shawshank Redemption",
-      sypnosis:
-         "Dos hombres encarcelados crean un vínculo a lo largo de varios años, encontrando consuelo y, eventualmente, redención a través de actos de decencia común.",
-      director: "Frank Darabont",
-      release_date: "1994",
-      rating: 5,
-      cast: ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
+      title: "Kung Fu Panda",
+      sypnosis: "The Dragon Warrior has to clash against the savage Tai Lung as China's fate hangs in the balance. However, the Dragon Warrior mantle is supposedly mistaken to be bestowed upon an obese panda who is a novice in martial arts.",
+      director: "Mark Osborne, John Stevenson",
+      release_date: "2008",
+      rating: 4.5,
+      cast: ["Jack Black", "Dustin Hoffman", "Angelina Jolie", "Ian McShane"],
       state: 1,
-      image: "shawshankredemption.jpg",
-      genre: "Action",
+      genre: "Animation, Action, Adventure",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCvhtLQ80OqelAWJn4PsbFao1MQyh2B3EOeg&s"
    },
 ];
