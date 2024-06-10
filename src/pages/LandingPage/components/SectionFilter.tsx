@@ -15,19 +15,19 @@ function SectionFilter({ searchText, rating, genres, search }: FilterState) {
          <hr className="my-4 mb-6 border-gray-300" />
 
          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            {loading && <p>Cargando...</p>}
-            {filteredMultimedia?.map((multimedia) => (
-               <CardMultimedia
-                  key={multimedia.id}
-                  id={multimedia.id}
-                  title={multimedia.title}
-                  image={multimedia.image}
-                  alt={`Pelicula: ${multimedia.title}`}
-                  navigateTo={() =>
-                     navigate(replaceParam(ROUTES.SINGLE_ITEM, "id", multimedia.id))
-                  }
-               />
-            ))}
+            {loading ? <p>Cargando...</p> :
+               filteredMultimedia?.map((multimedia) => (
+                  <CardMultimedia
+                     key={multimedia.id}
+                     id={multimedia.id}
+                     title={multimedia.title}
+                     image={multimedia.image}
+                     alt={`Pelicula: ${multimedia.title}`}
+                     navigateTo={() =>
+                        navigate(replaceParam(ROUTES.SINGLE_ITEM, "id", multimedia.id))
+                     }
+                  />
+               ))}
          </div>
       </section>
    );
