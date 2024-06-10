@@ -1,5 +1,4 @@
 import { ReactNode } from "react"
-import Navbar from "./Navbar"
 
 interface Props {
    children: ReactNode
@@ -8,7 +7,6 @@ interface Props {
 function Layout({ children }: Props) {
    return (
       <div id="layout" className="flex flex-col">
-         <Navbar />
          {children}
       </div>
    )
