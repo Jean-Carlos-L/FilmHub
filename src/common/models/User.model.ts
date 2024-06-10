@@ -1,7 +1,7 @@
 export interface User {
-  name: string; // Nombre completo del usuario
-  phone: string; // Número de teléfono del usuario
-  email: string; // Correo electrónico del usuario
-  age: number; // Edad del usuario
-  password: string; // Contraseña del usuario
+  nombre: string; // Nombre completo del usuario
+  telefono: string; // Número de teléfono del usuario
+  correo: string; // Correo electrónico del usuario
+  edad: number; // Edad del usuario
+  contrasena: string; // Contraseña del usuario
 }

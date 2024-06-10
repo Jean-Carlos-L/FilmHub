@@ -9,10 +9,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
   // Definición de estados para los campos del formulario
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
+  const [telefono, setPhone] = useState('');
+  const [correo, setEmail] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [password, setPassword] = useState('');
+  const [contrasena, setPassword] = useState('');
 
   // Definición de estados para los mensajes de error
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -45,18 +45,18 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
     // Validar que todos los campos estén llenos
     if (!firstName) validationErrors.firstName = 'El nombre es requerido';
     if (!lastName) validationErrors.lastName = 'El apellido es requerido';
-    if (!phone) validationErrors.phone = 'El número de celular es requerido';
-    if (!email) validationErrors.email = 'El correo electrónico es requerido';
+    if (!telefono) validationErrors.phone = 'El número de celular es requerido';
+    if (!correo) validationErrors.email = 'El correo electrónico es requerido';
     if (!birthdate) validationErrors.birthdate = 'La fecha de nacimiento es requerida';
-    if (!password) validationErrors.password = 'La contraseña es requerida';
+    if (!contrasena) validationErrors.password = 'La contraseña es requerida';
 
     // Validar el formato del correo electrónico
-    if (email && !validateEmail(email)) {
+    if (correo && !validateEmail(correo)) {
       validationErrors.email = 'El correo electrónico no es válido';
     }
 
     // Validar que el número de teléfono tenga 10 dígitos
-    if (phone && phone.length !== 10) {
+    if (telefono && telefono.length !== 10) {
       validationErrors.phone = 'El número de celular debe tener 10 dígitos';
     }
 
@@ -67,10 +67,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
     }
 
     // Calcular la edad
-    const age = calculateAge(birthdate);
+    const edad = calculateAge(birthdate);
 
     // Llamar la función onSubmit con los datos del usuario
-    onSubmit({ name: `${firstName} ${lastName}`, phone, email, age, password });
+    onSubmit({ nombre: `${firstName} ${lastName}`, telefono, correo, edad, contrasena });
   };
 
   return (
@@ -115,7 +115,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
           id="phone"
           type="text"
           placeholder="Celular"
-          value={phone}
+          value={telefono}
           onChange={(e) => setPhone(e.target.value)}
         />
         {errors.phone && <p className="text-red-500 text-xs italic">{errors.phone}</p>}
@@ -130,7 +130,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
           id="email"
           type="email"
           placeholder="Correo Electrónico"
-          value={email}
+          value={correo}
           onChange={(e) => setEmail(e.target.value)}
         />
         {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
@@ -160,7 +160,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
           id="password"
           type="password"
           placeholder="******************"
-          value={password}
+          value={contrasena}
           onChange={(e) => setPassword(e.target.value)}
         />
         {errors.password && <p className="text-red-500 text-xs italic">{errors.password}</p>}
