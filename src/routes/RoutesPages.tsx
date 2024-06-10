@@ -6,10 +6,8 @@ import Layout from "@components/Layout";
 function RoutesPages() {
    return (
       <BrowserRouter>
-         <Layout>
-            <PublicRoutes />
-            <PrivateRoutes />
-         </Layout>
+         <PublicRoutes />
+         <PrivateRoutes />
       </BrowserRouter>
    )
 }
