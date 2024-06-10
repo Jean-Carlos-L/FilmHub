@@ -29,7 +29,7 @@ function Forum({ id }: PropsForum) {
       <section className="w-3/4 mt-10 text-gray-50">
          <h2 className="text-3xl mb-5 font-bold">Foro</h2>
          <hr className="my-3 border-2 border-gray-300" />
-         {comments.map((comment) => (
+         {comments?.map((comment) => (
             <article
                key={comment.id}
                className="bg-terciary-default mb-6 p-3 rounded-md flex flex-col justify-between"
@@ -41,8 +41,8 @@ function Forum({ id }: PropsForum) {
             </article>
          ))}
 
-         <div className="flex items-center space-x-2">
-            <form onSubmit={handleOnsubmit}>
+         <div className="flex">
+            <form onSubmit={handleOnsubmit} className="flex w-full items-center space-x-2">
                <textarea
                   ref={textareaRef}
                   name="comment"

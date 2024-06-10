@@ -6,5 +6,7 @@ export interface Multimedia {
    release_date: string;
    rating: number;
    cast: string[];
+   image: string;
+   genre: string;
    state: number;
 }

@@ -7,7 +7,7 @@ interface Props {
 
 function Layout({ children }: Props) {
    return (
-      <div>
+      <div id="layout" className="flex flex-col">
          <Navbar />
          {children}
       </div>
