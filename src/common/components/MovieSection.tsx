@@ -1,24 +1,40 @@
-import React from 'react';
-import MovieCard from '../components/ListaMovieCard';
+import React from "react";
+import CardMultimedia from "./CardMultimedia";
+import { replaceParam } from "@utilities/formatParams.utils";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "src/routes/routes";
+import { Multimedia } from "@models/Multimedia.model";
+
+
+
 
 interface MovieSectionProps {
     title: string;
-    movies: { image: string; title: string; description: string }[];
+    multimedia: Multimedia[];
 }
 
-const MovieSection: React.FC<MovieSectionProps> = ({ title, movies }) => {
+const MovieSection: React.FC<MovieSectionProps> = ({ title, multimedia }) => {
+    const navigate = useNavigate();
     return (
         <div className="mb-8">
             <h2 className="text-2xl text-white mb-4">{title}</h2>
-            <div className="grid grid-cols-5 gap-4">
-                {movies.map((movie, index) => (
-                    <MovieCard
-                        key={index}
-                        image={movie.image}
-                        title={movie.title}
-                        description={movie.description}
-                    />
-                ))}
+            <div className="grid grid-cols-4 gap-6 mb-">
+                {multimedia.map((multimedia) => {
+                    return (
+                        <CardMultimedia
+                            key={multimedia.id}
+                            id={multimedia.id}
+                            title={multimedia.title}
+                            image={multimedia.image}
+                            alt={`Pelicula: ${multimedia.title}`}
+                            navigateTo={() =>
+                                navigate(
+                                    replaceParam(ROUTES.SINGLE_ITEM, "id", multimedia.id)
+                                )
+                            }
+                        />
+                    );
+                })}
             </div>
         </div>
     );
