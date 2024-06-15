@@ -14,7 +14,7 @@ const Header: React.FC = () => {
                 <button className="text-white px-4 py-2 rounded" onClick={() => navigate(ROUTES.LISTS)}>Listas</button>
             </div>
             <div className="flex items-center space-x-4">
-                <button className="bg-red-700 text-white px-4 py-2 rounded">Configuración</button>
+                <button className="bg-red-700 text-white px-4 py-2 rounded" onClick={() => navigate(ROUTES.USER_PROFILE)}>Editar perfil</button>
             </div>
         </div>
     );
