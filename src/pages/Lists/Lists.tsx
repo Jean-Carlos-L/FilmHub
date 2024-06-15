@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../../common/components/ListaFav";
 import { useListsUser } from "src/common/hooks/useListsUser";
 import { replaceParam } from "@utilities/formatParams.utils";
 import { ROUTES } from "src/routes/routes";
@@ -14,7 +13,6 @@ function Lists() {
 
     return (
         <div className="bg-blue-900 min-h-screen">
-            <Header />
             <div className="p-8">
                 <h1 className="text-white text-2xl font-bold mb-4">Listas</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

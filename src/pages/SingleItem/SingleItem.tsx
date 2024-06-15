@@ -7,7 +7,6 @@ import { Multimedia } from "src/common/models/Multimedia.model";
 import SectionTop from "./components/SectionTop";
 import SectionDetails from "./components/SectionDetails";
 import Forum from "./components/Forum";
-import Header from "@components/ListaFav";
 
 function SingleItem() {
   const { id } = useParams();
@@ -35,7 +34,6 @@ function SingleItem() {
 
   return (
     <main className="w-full p-5 items-center flex flex-col lg:w-3/4 lg:mx-auto">
-      <Header />
       <SectionTop
         id={currentItem.id}
         title={currentItem.title}

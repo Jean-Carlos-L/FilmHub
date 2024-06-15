@@ -23,7 +23,7 @@ function ListsMultimedia() {
    return (
       <main className="w-full p-5 items-center flex flex-col">
          <section className="flex flex-col w-full mt-5 text-gray-200">
-            <h2 className="text-4xl font-bold">{list.name}</h2>
+            <h2 className="text-4xl font-bold">{list?.name}</h2>
             <hr className="my-4 mb-6 border-gray-300" />
             {loading ? (
                <p className="text-gray-400">Loading...</p>
