@@ -1,10 +1,10 @@
-import { UserAuth } from 'src/common/models/userAuth.model';
+import { User } from '@models/User.model';
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: UserAuth | null;
+  user: User | null;
   loading: boolean;
   error: string | null;
 }
@@ -51,7 +51,7 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    loginSuccess(state, action: PayloadAction<UserAuth>) {
+    loginSuccess(state, action: PayloadAction<User>) {
       state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
@@ -72,7 +72,7 @@ const authSlice = createSlice({
       state.error = null;
       saveState(state);
     },
-    updateUser(state, action: PayloadAction<UserAuth>) {
+    updateUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
       saveState(state);
     },
