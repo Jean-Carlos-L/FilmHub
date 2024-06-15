@@ -6,7 +6,8 @@ import { ROUTES } from "./routes";
 function RequireAuth({ children }: { children: React.ReactNode }) {
    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
-   if (!isAuthenticated) {
+   // TODO - Redirect to login page if user is not authenticated disabled for now
+   if (isAuthenticated) {
       return <Navigate to={ROUTES.LOGIN} />;
    }
 

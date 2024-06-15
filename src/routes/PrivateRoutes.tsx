@@ -4,7 +4,8 @@ import RequireAuth from "./RequireAuth";
 import SingleItem from "src/pages/SingleItem/SingleItem";
 import LandingPage from "src/pages/LandingPage/LandingPage";
 import UserProfile from "src/pages/UserEdit/UserProfilePage";
-import MovieList from "src/pages/MovieListaPage/MovieListaPage";
+import Lists from "src/pages/Lists/Lists";
+import ListsMultimedia from "src/pages/Lists/ListsMultimedia";
 
 function PrivateRoutes() {
    return (
@@ -29,9 +30,15 @@ function PrivateRoutes() {
             </RequireAuth>}
          />
 
-         <Route path={ROUTES.MOVIELIST} element={
+         <Route path={ROUTES.LISTS} element={
             <RequireAuth>
-               <MovieList/>
+               <Lists />
+            </RequireAuth>}
+         />
+
+         <Route path={ROUTES.LISTS_MULTIMEDIA} element={
+            <RequireAuth>
+               <ListsMultimedia />
             </RequireAuth>}
          />
       </Routes>

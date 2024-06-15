@@ -5,5 +5,6 @@ export const ROUTES = {
   LANDING_PAGE: "/",
   USER_PROFILE: "/user-profile",
   RECOVERY: "/recovery",
-  MOVIELIST: "/movie-list",
+  LISTS: "/lists",
+  LISTS_MULTIMEDIA: "/lists/:id/multimedia",
 }
