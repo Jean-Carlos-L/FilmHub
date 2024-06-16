@@ -3,7 +3,6 @@ import HeaderFilter from "./components/HeaderFilter";
 import SectionFilter from "./components/SectionFilter";
 import SectionMostViewed from "./components/SectionMostViewed";
 import SectionSuggestions from "./components/SectionSuggestions";
-import Header from "@components/ListaFav";
 
 function LandingPage() {
    const {
@@ -17,7 +16,6 @@ function LandingPage() {
 
    return (
       <main className="w-full p-5 items-center flex flex-col">
-         <Header />
          <HeaderFilter
             filterState={filterState}
             handleGenreClick={handleGenreClick}

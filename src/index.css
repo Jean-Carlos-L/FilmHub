@@ -9,5 +9,14 @@ body {
   background-color: #2e1964;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 
 

@@ -1,10 +1,10 @@
-import { UserAuth } from 'src/common/models/userAuth.model';
+import { User } from '@models/User.model';
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: UserAuth | null;
+  user: User | null;
   loading: boolean;
   error: string | null;
 }
@@ -12,7 +12,15 @@ interface AuthState {
 const loadState = (): AuthState => {
   const initialState: AuthState = {
     isAuthenticated: false,
-    user: null,
+    user: {
+      id: 1,
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      phone: '1234567890',
+      birthdate: 946684800000, // January 1, 2000
+      genres: [{ id: 1, name: 'Action', state: true }, { id: 2, name: 'Adventure', state: true }],
+      token: 'abc123',
+    },
     loading: false,
     error: null,
   };
@@ -51,7 +59,7 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    loginSuccess(state, action: PayloadAction<UserAuth>) {
+    loginSuccess(state, action: PayloadAction<User>) {
       state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
@@ -72,7 +80,7 @@ const authSlice = createSlice({
       state.error = null;
       saveState(state);
     },
-    updateUser(state, action: PayloadAction<UserAuth>) {
+    updateUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
       saveState(state);
     },
