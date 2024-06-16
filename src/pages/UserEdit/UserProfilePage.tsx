@@ -1,5 +1,5 @@
 import React from 'react';
-import UserProfileForm from '../../common/components/UserEditForm';
+import UserProfileForm from './components/UserEditForm';
 
 const UserProfilePage: React.FC = () => {
     return (

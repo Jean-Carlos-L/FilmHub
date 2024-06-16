@@ -11,8 +11,16 @@ interface AuthState {
 
 const loadState = (): AuthState => {
   const initialState: AuthState = {
-    isAuthenticated: true, // TODO change to false
-    user: null,
+    isAuthenticated: true,
+    user: {
+      id: 1,
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      phone: '1234567890',
+      birthdate: 946684800000, // January 1, 2000
+      genres: [{ id: 1, name: 'Action', state: true }, { id: 2, name: 'Adventure', state: true }],
+      token: 'abc123',
+    },
     loading: false,
     error: null,
   };
