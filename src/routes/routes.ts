@@ -7,4 +7,5 @@ export const ROUTES = {
   RECOVERY: "/recovery",
   LISTS: "/lists",
   LISTS_MULTIMEDIA: "/lists/:id/multimedia",
+  CHANGE_PASSWORD: "/change-password",
 }

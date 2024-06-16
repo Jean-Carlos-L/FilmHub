@@ -1,20 +1,22 @@
+import { checkEmail } from '@utilities/checkEmail.utils';
 import React, { useState } from 'react';
+import { useUserCommand } from '../hooks/useUserCommand';
 
 const PasswordRecoveryForm: React.FC = () => {
-    const [email, setEmail] = useState('');
+    const { handleRecoveryPassword } = useUserCommand();
     const [isValid, setIsValid] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        setEmail(value);
-        setIsValid(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));
+        setIsValid(checkEmail(value));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (isValid) {
-            console.log('Email:', email);
-            // lógica para enviar el email de recuperación Preguntar a backend
+            const form = e.currentTarget;
+            const email = (form.elements[0] as HTMLInputElement).value;
+            handleRecoveryPassword(email);
         }
     };
 
@@ -25,7 +27,6 @@ const PasswordRecoveryForm: React.FC = () => {
                 <div className="mb-4 relative">
                     <input
                         type="email"
-                        value={email}
                         onChange={handleChange}
                         placeholder="correo@dominio.com"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md"

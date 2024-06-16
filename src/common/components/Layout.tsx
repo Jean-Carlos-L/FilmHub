@@ -11,7 +11,7 @@ function Layout({ children }: Props) {
    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
 
    return (
-      <div id="layout" className="flex flex-col">
+      <div id="layout" className="flex flex-col h-full flex-grow">
          {isAuthenticated && <ListaFav />}
          {children}
       </div>
