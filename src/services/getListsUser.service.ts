@@ -1,20 +1,25 @@
 import { List } from "@models/List.model";
+import { getToken } from "@utilities/getToken.utils";
 import { listAdapter } from "src/common/adapters/list.adapter";
 import { FetchCustom } from "src/common/hooks/useFetch";
 
-export const getListsUserService = (fetch: FetchCustom) => async () => {
+export const getListsUserService = (fetch: FetchCustom) => async (id: string) => {
    try {
-      const url = `${import.meta.env.BASE_URL}/list/user`;
-      const response = await fetch<List[]>(url);
-      const lists = response.data.map(listAdapter);
+      const url = `${import.meta.env.VITE_BASE_URL}/cinema/lista/consultarListasUsuario/${id}`;
+      const response = await fetch<List[]>(url,
+         {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: `Bearer ${getToken()}`
+            }
+         }
+      );
+
+      const lists = response.map(listAdapter);
       return lists;
    } catch (error) {
       console.error(error);
-      return [
-         { id: 1, name: "Lista 1", },
-         { id: 2, name: "Lista 2", },
-         { id: 3, name: "Lista 3", },
-         { id: 4, name: "Lista 4", },
-      ];
+      return [];
    }
 };
