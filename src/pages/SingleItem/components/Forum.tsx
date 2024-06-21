@@ -6,12 +6,12 @@ import { useCommentsCommand } from "../hooks/useCommentsCommand";
 function Forum({ id }: PropsForum) {
    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
    const { comments } = useCommentsQuery({ multimediaId: id });
-   const { setNewComment } = useCommentsCommand();
+   const { setNewComment } = useCommentsCommand({ multimediaId: id });
 
    const adjustTextareaHeight = () => {
       const textarea = textareaRef.current;
       if (textarea) {
-         textarea.style.height = 'auto';
+         textarea.style.height = "auto";
          textarea.style.height = `${textarea.scrollHeight}px`;
       }
    };
@@ -19,11 +19,10 @@ function Forum({ id }: PropsForum) {
    const handleOnsubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
-      const comment = formData.get('comment') as string;
-      setNewComment(prevState => ({ ...prevState, comment }));
+      const comment = formData.get("comment") as string;
+      setNewComment((prevState) => ({ ...prevState, comment }));
       event.currentTarget.reset();
    };
-
 
    return (
       <section className="w-3/4 mt-10 text-gray-50">
@@ -42,7 +41,10 @@ function Forum({ id }: PropsForum) {
          ))}
 
          <div className="flex">
-            <form onSubmit={handleOnsubmit} className="flex w-full items-center space-x-2">
+            <form
+               onSubmit={handleOnsubmit}
+               className="flex w-full items-center space-x-2"
+            >
                <textarea
                   ref={textareaRef}
                   name="comment"

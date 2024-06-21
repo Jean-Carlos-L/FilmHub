@@ -49,12 +49,11 @@ function SigninForm() {
          );
          if (hasErrors) {
             setErrors(validationErrors);
-            return console.log("Validations", fields);
+            return
             // Perform form submission logic here
          }
 
-         const response = await handleSignin(fields);
-         console.log('response', response)
+         await handleSignin(fields);
       } catch (error) {
          console.error(error)
       }

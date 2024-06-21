@@ -10,7 +10,7 @@ export const multimediaAdapter = (data): Multimedia => {
       rating: data.calificacion,
       cast: data.reparto.split(","),
       image: data.imagen,
-      genre: data.generos.split(",").join(", "),
+      genre: data.generos?.split(",").join(", "),
       state: data.estado,
    };
 }

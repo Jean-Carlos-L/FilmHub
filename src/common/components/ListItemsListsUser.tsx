@@ -11,7 +11,6 @@ import {
 
 function ListItemsListsUser({ multimediaLists, setSelectList }: PropsListItemsListsUser) {
    const { listsUser } = useListsUser();
-
    const isChecked = (list: ListModel) => multimediaLists.some(l => l.idLista === list.id);
    const handleOnClick = (list: ListModel) => setSelectList(list);
 
