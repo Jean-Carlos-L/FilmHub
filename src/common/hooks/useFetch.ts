@@ -20,10 +20,10 @@ export const useFetch = () => {
                headers: {
                   "Content-Type": "application/json",
                   ...options?.headers,
-                  Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJkNzAxYTgyYS0zYzlmLTQ5NWQtYjZhYy05M2EyYmU5NjVhZjgiLCJzdWIiOiJzQGdtYWlsLmNvbSIsImlhdCI6MTcxODAzNzMyNSwiZXhwIjoxNzE4MTIzNzI1fQ.K1ZLrbz2SLrQUkgA9p5_3q5q0SnpVM3LVMGCNlOPYV4`,
                },
             };
          }
+
          const response = await fetch(url, options);
          if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

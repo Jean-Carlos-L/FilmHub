@@ -2,7 +2,7 @@ import { checkEmail } from '@utilities/checkEmail.utils';
 import React, { useState } from 'react';
 import { useUserCommand } from '../hooks/useUserCommand';
 
-const PasswordRecoveryForm: React.FC = () => {
+function PasswordRecoveryForm() {
     const { handleRecoveryPassword } = useUserCommand();
     const [isValid, setIsValid] = useState(false);
 
@@ -16,6 +16,7 @@ const PasswordRecoveryForm: React.FC = () => {
         if (isValid) {
             const form = e.currentTarget;
             const email = (form.elements[0] as HTMLInputElement).value;
+            console.log(email)
             handleRecoveryPassword(email);
         }
     };
@@ -76,6 +77,6 @@ const PasswordRecoveryForm: React.FC = () => {
             </div>
         </div>
     );
-};
+}
 
 export default PasswordRecoveryForm;

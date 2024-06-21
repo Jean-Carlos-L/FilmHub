@@ -4,6 +4,7 @@ import { HeartIcon, PlusCircleIcon } from "@heroicons/react/16/solid";
 import ModalLists from "./ModalLists";
 import { List } from "@models/List.model";
 import { useMultimediaLists } from "../hooks/useMultimediaLists";
+import { useListsUser } from "../hooks/useListsUser";
 
 interface Props {
    id: number;
@@ -15,13 +16,15 @@ interface Props {
 
 function CardMultimedia({ id, title, image, alt, navigateTo }: Props) {
    const { multimediaLists } = useMultimediaLists(id);
-   const { handleLikeToMultimedia, handleAddMultimediaToList } =
+   const { listsUser } = useListsUser();
+   const { handleAddMultimediaToList } =
       useHandleMultimedia();
    const [showModal, setShowModal] = useState(false);
 
    const handleLikeClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
-      handleLikeToMultimedia(id);
+      const listId = listsUser?.find(list => list.name.toLocaleLowerCase() === "me gusta")?.id;
+      handleAddMultimediaToList(id, listId!);
    };
 
    const handleAddClick = (list: List) => {
@@ -54,7 +57,7 @@ function CardMultimedia({ id, title, image, alt, navigateTo }: Props) {
             </button>
          </div>
          <div className="px-3 py-2" onClick={navigateTo}>
-            <img className="w-full h-auto rounded-sm" src={image} alt={alt} />
+            <img className="w-full h-auto rounded-sm" style={{ maxHeight: 350, minHeight: 350 }} src={image} alt={alt} />
             <div className="py-4">
                <div className="text-center">
                   <h2 className="text-sm font-semibold">{title}</h2>

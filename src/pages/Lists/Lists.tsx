@@ -2,13 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { useListsUser } from "src/common/hooks/useListsUser";
 import { replaceParam } from "@utilities/formatParams.utils";
 import { ROUTES } from "src/routes/routes";
+import { List } from "@models/List.model";
 
 function Lists() {
     const navigate = useNavigate();
     const { listsUser } = useListsUser();
 
-    const navigateToList = (id: number) => {
-        navigate(replaceParam(ROUTES.LISTS_MULTIMEDIA, "id", id.toString()));
+    const navigateToList = (id: number, list: List) => {
+        navigate(replaceParam(ROUTES.LISTS_MULTIMEDIA, "id", id.toString()), { state: list });
     };
 
     return (
@@ -20,7 +21,7 @@ function Lists() {
                         <div
                             key={list.id}
                             className="bg-white p-4 rounded"
-                            onClick={() => navigateToList(list.id)}
+                            onClick={() => navigateToList(list.id, list)}
                         >
                             <h2 className="text-lg font-bold">{list.name}</h2>
                         </div>

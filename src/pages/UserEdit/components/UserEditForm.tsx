@@ -1,67 +1,114 @@
 import { UserUpdateDTO } from "@models/User.model";
-import {
-    TextField,
-    FormControl,
-    InputLabel,
-    Select,
-    FilledInput,
-    Box,
-    MenuItem,
-    Chip
-} from "@mui/material";
-import { RootState } from "@redux/store";
 import { checkEmail } from "@utilities/checkEmail.utils";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { useGenres } from "src/common/hooks/useGenres";
 import { useUserCommand } from "src/common/hooks/useUserCommand";
+import { useUserQuery } from "src/common/hooks/useUserQuery";
+import Textfield from "src/pages/Auth/components/Textfield";
+
+interface Errors {
+    fullName: string;
+    phone: string;
+    email: string;
+    password?: string;
+    genres: string;
+}
+
+const initialStatesUser: UserUpdateDTO = {
+    fullName: "",
+    phone: "",
+    email: "",
+    genres: [],
+    password: "",
+};
 
 function UserProfileForm() {
     const { genres } = useGenres();
-    const user = useSelector((state: RootState) => state.auth.user);
-    const { handleUpdateUser } = useUserCommand()
+    const { user } = useUserQuery();
+    const { handleUpdateUser } = useUserCommand();
+    const [newUser, setNewUser] = useState<UserUpdateDTO>(initialStatesUser);
+    const [errors, setErros] = useState<Errors>({
+        fullName: "",
+        phone: "",
+        email: "",
+        genres: "",
+    });
 
     const validations = (data: UserUpdateDTO) => {
+        const errors: Errors = {
+            fullName: "",
+            phone: "",
+            email: "",
+            genres: "",
+        };
+
         if (!data.fullName) {
-            alert("El campo nombre completo es requerido");
-            return false;
+            errors.fullName = "El campo nombre completo es requerido";
         }
         if (!data.phone) {
-            alert("El campo teléfono es requerido");
-            return false;
+            errors.phone = "El campo teléfono es requerido";
         }
         if (!data.email) {
-            alert("El campo correo electrónico es requerido");
-            return false;
+            errors.email = "El campo correo electrónico es requerido";
         }
         if (!checkEmail(data.email)) {
-            alert("El correo electrónico no es válido");
-            return false;
+            errors.email = "El correo electrónico no es válido";
         }
         if (data.genres.length === 0) {
-            alert("El campo géneros es requerido");
-            return false;
+            errors.genres = "Seleccione al menos un género";
         }
-        return true;
-    }
+        return errors;
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const user: UserUpdateDTO = {
-            fullName: formData.get("fullname") as string,
-            phone: formData.get("phone") as string,
-            email: formData.get("email") as string,
-            password: formData.get("password") as string,
-            genres: formData.getAll("genres") as string[],
-        };
 
-        if (!validations(user)) return;
+        const errors = validations(newUser);
+        const hasErros = Object.values(errors).some((error) => error !== "");
+        if (hasErros) {
+            setErros(errors);
+            return;
+        }
 
-        handleUpdateUser(user);
+        console.log('newUser', newUser)
+
+        handleUpdateUser(newUser);
+    };
+
+    useEffect(() => {
+        setNewUser({
+            fullName: user.name,
+            phone: user.phone,
+            email: user.email,
+            genres: user.genres,
+            password: "",
+        });
+
+    }, [user]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNewUser({
+            ...newUser,
+            [e.target.id]: e.target.value,
+        });
+    };
+
+    const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const options = e.target.options;
+        const selectedOptions = [];
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].selected) {
+                selectedOptions.push(parseInt(options[i].value));
+            }
+        }
+        setNewUser({
+            ...newUser,
+            genres: selectedOptions,
+        });
     };
 
     return (
-        <div className="bg-blue-900 p-6 rounded-lg shadow-lg w-full max-w-3xl mx-auto">
+        <div className="bg-secondary-light p-6 rounded-lg shadow-lg w-full max-w-3xl mx-auto">
             <form onSubmit={handleSubmit}>
                 <div className="flex items-center justify-between mb-6">
                     <div className="bg-gray-500 w-24 h-24 rounded-full flex items-center justify-center text-white">
@@ -83,62 +130,76 @@ function UserProfileForm() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                    <TextField
-                        className="bg-white rounded-sm"
-                        name="fullname"
+                    <Textfield
                         label="Nombre completo"
-                        variant="filled"
-                        defaultValue={user?.name}
-                    />
-                    <TextField
-                        className="bg-white rounded-sm"
-                        name="phone"
-                        label="Teléfono"
-                        variant="filled"
-                        defaultValue={user.phone}
-                    />
-                    <TextField
-                        className="bg-white rounded-sm"
-                        name="email"
-                        label="Correo electrónico"
-                        variant="filled"
-                        type="email"
-                        defaultValue={user.email}
-                    />
-                    <TextField
-                        className="bg-white rounded-sm"
-                        name="password"
-                        label="Contraseña"
-                        variant="filled"
-                        type="password"
+                        id="fullName"
+                        placeholder="Nombre completo"
+                        type="text"
+                        error={errors.fullName}
+                        defaultValue={newUser.fullName}
+                        onChange={handleChange}
                     />
 
-                    <FormControl className="bg-white rounded-sm">
-                        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
-                        <Select
-                            style={{ width: "100%" }}
-                            labelId="demo-multiple-chip-label"
-                            id="demo-multiple-chip"
-                            name="genres"
-                            multiple
-                            defaultValue={user.genres.map((genre) => genre.name)}
-                            input={<FilledInput id="demo-multiple-chip" />}
-                            renderValue={(selected) => (
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                                    {selected.map((value) => (
-                                        <Chip key={value} label={value} />
-                                    ))}
-                                </Box>
-                            )}
-                            MenuProps={MenuProps}
+                    <Textfield
+                        label="Teléfono"
+                        id="phone"
+                        placeholder="Teléfono"
+                        type="text"
+                        error={errors.phone}
+                        defaultValue={newUser.phone}
+                        onChange={handleChange}
+                    />
+
+                    <Textfield
+                        label="Correo electrónico"
+                        id="email"
+                        placeholder="Correo electrónico"
+                        type="email"
+                        error={errors.email}
+                        defaultValue={newUser.email}
+                        onChange={handleChange}
+                    />
+
+                    <div className="mb-4">
+                        <label className="block text-white text-sm font-bold mb-2" htmlFor="password">
+                            Contraseña
+                        </label>
+                        <input
+                            className="mb-2 p-2 border block w-full bg-blue-900 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            id="password"
+                            type="password"
+                            placeholder="Contraseña"
+                            value={newUser.password}
+                            onChange={handleChange}
+                        />
+                        {errors.password && <p className="text-red-500 text-xs italic">{errors.password}</p>}
+                    </div>
+
+                    <div className="col-span-2 mb-4">
+                        <label
+                            className="block text-white text-sm font-bold mb-2"
+                            htmlFor="genres"
                         >
-                            {genres.map((genre) => (
-                                <MenuItem key={genre?.id} value={genre?.name}>
-                                    {genre?.name}
-                                </MenuItem>
+                            Géneros
+                        </label>
+                        <select
+                            name="genres"
+                            id="genres"
+                            className="mb-2 p-2 border block w-full bg-blue-900 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            multiple
+                            onChange={handleChangeSelect}
+                            value={newUser.genres}
+                        >
+                            {genres?.map((genre) => (
+                                <option key={genre.id} value={genre.id}>
+                                    {genre.name}
+                                </option>
                             ))}
-                        </Select>
-                    </FormControl>
+                        </select>
+                        {errors.genres && (
+                            <p className="text-red-500 text-xs italic">{errors.genres}</p>
+                        )}
+                    </div>
                 </div>
                 <button
                     type="submit"
@@ -150,16 +211,5 @@ function UserProfileForm() {
         </div>
     );
 }
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
 
 export default UserProfileForm;

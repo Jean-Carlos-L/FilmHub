@@ -2,10 +2,9 @@ import { FetchCustom } from "src/common/hooks/useFetch";
 
 export const recoveryPasswordService = (fetch: FetchCustom) => async (email: string) => {
    try {
-      const url = `${import.meta.env.BASE_URL}/auth/recovery`
+      const url = `${import.meta.env.VITE_BASE_URL}/cinema/buscarCorreo/${email}`
       const response = await fetch(url, {
-         method: "POST",
-         body: JSON.stringify({ email }),
+         method: "GET",
          headers: {
             "Content-Type": "application/json",
          },

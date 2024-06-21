@@ -3,13 +3,16 @@ import { useFetch } from "./useFetch"
 import { updateProfileUserService } from "@services/updateProfileUser.service"
 import { recoveryPasswordService } from "@services/recoveryPassword.service"
 import { changePasswordService } from "@services/changePassword.service"
+import { useSelector } from "react-redux"
+import { RootState } from "@redux/store"
 
 export const useUserCommand = () => {
    const fetchCustom = useFetch()
+   const userId = useSelector((state: RootState) => state.auth.user?.id)
 
    const handleUpdateUser = async (user: UserUpdateDTO) => {
       try {
-         const message = await updateProfileUserService(fetchCustom)(user)
+         const message = await updateProfileUserService(fetchCustom)(userId.toString(), user)
          console.log(message)
          alert(message)
       } catch (error) {

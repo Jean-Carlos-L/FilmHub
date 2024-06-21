@@ -1,11 +1,16 @@
 export interface User {
    id: number;
-   name: string;
+   token: string;
    email: string;
+}
+
+export interface UserAll {
+   id: number;
+   email: string;
+   name: string;
    phone: string;
    birthdate: number;
-   genres: Genre[];
-   token: string;
+   genres: string[];
 }
 
 export interface UserCredentials {
@@ -29,4 +34,29 @@ export interface UserUpdateDTO {
    password: string;
    birthdate?: number;
    genres: string[];
+}
+
+// Spanish
+
+
+export interface UserDTOes {
+   nombre: string;
+   telefono: string;
+   correo: string;
+   edad: number;
+   contrasena: string;
+}
+
+export interface UserUpdateDTOes {
+   nombre: string;
+   telefono: string;
+   correo: string;
+   contrasena: string;
+   edad?: number;
+   idGeneros: string[];
+}
+
+export interface UserCredentialses {
+   correo: string;
+   contrasena: string;
 }

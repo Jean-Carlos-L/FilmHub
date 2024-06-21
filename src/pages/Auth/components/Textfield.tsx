@@ -1,4 +1,4 @@
-export default function Textfield({ id, label, type, placeholder, error }: TextfieldProps) {
+export default function Textfield({ id, label, type, placeholder, error, defaultValue = "", onChange }: TextfieldProps) {
    return (
       <div className="mb-4">
          <label className="block text-white text-sm font-bold mb-2" htmlFor="password">
@@ -9,6 +9,7 @@ export default function Textfield({ id, label, type, placeholder, error }: Textf
             id={id}
             type={type}
             placeholder={placeholder}
+            {...(![""].includes(defaultValue) && { value: defaultValue, onChange: onChange })}
          />
          {error && <p className="text-red-500 text-xs italic">{error}</p>}
       </div>
@@ -21,4 +22,6 @@ interface TextfieldProps {
    type: string;
    placeholder: string;
    error: string;
+   defaultValue?: string;
+   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

@@ -20,8 +20,8 @@ export const useAuth = () => {
          return alert('Error al iniciar sesión');
       }
 
-      console.log('message', userLogged);
       dispatch(loginSuccess(userLogged));
+      navigate(ROUTES.LANDING_PAGE);
    }
 
    const handleSignup = async (user: UserDTO) => {

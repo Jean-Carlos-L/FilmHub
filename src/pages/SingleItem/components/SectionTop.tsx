@@ -6,15 +6,18 @@ import { HeartIcon } from "@heroicons/react/16/solid";
 import { useHandleMultimedia } from "src/common/hooks/useHandleMultimedia";
 import { List } from "@models/List.model";
 import { useMultimediaLists } from "src/common/hooks/useMultimediaLists";
+import { useListsUser } from "src/common/hooks/useListsUser";
 
 function SectionTop({ id, title, synopsis, image }: PropsSectionTop) {
    const { multimediaLists } = useMultimediaLists(id);
-   const { handleLikeToMultimedia, handleAddMultimediaToList } =
+   const { listsUser } = useListsUser();
+   const { handleAddMultimediaToList } =
       useHandleMultimedia();
    const [showModal, setShowModal] = useState(false);
 
    const handleLikeClick = () => {
-      handleLikeToMultimedia(id);
+      const listId = listsUser?.find(list => list.name.toLocaleLowerCase() === "me gusta")?.id;
+      handleAddMultimediaToList(id, listId!);
    };
 
    const handleAddClick = (list: List) => {
@@ -30,7 +33,7 @@ function SectionTop({ id, title, synopsis, image }: PropsSectionTop) {
          <article>
             <div className="flex mb-10">
                <div className="w-1/2 flex justify-center">
-                  <img src={image} alt="Portada" className="rounded-full" />
+                  <img src={image} alt="Portada" className="rounded-full" style={{ maxWidth: 250, maxHeight: 500 }} />
                </div>
                <div className="w-1/2 flex flex-col justify-center">
                   <div className="flex items-center mb-10 justify- gap-5">
